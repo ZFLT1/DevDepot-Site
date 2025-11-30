@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>العد التنازلي - Dev Depot - ديبووت</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { 
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+        .gradient-bg { 
+            background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3);
+        }
+        .countdown-item {
+            background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 15px;
+            min-width: 80px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+        }
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .countdown-label {
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center p-1 shadow-md">
+                        <i class="fas fa-store text-2xl"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold">Dev Depot - ديبووت</h1>
+                </div>
+                <div class="hidden md:flex space-x-8 space-x-reverse">
+                    <a href="index.html" class="hover:text-blue-200 transition-colors font-semibold">الرئيسية</a>
+                    <a href="countdown.html" class="hover:text-blue-200 transition-colors font-semibold">العد التنازلي</a>
+                    <a href="contact.html" class="hover:text-blue-200 transition-colors font-semibold">تواصل معنا</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="index.html" class="block py-2 hover:text-blue-200 transition-colors">الرئيسية</a>
+                <a href="countdown.html" class="block py-2 hover:text-blue-200 transition-colors">العد التنازلي</a>
+                <a href="contact.html" class="block py-2 hover:text-blue-200 transition-colors">تواصل معنا</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Countdown Section -->
+    <section class="py-20 gradient-bg text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-5xl font-bold mb-8">العد التنازلي لإطلاق التطبيق</h1>
+            <p class="text-xl mb-12 max-w-2xl mx-auto">نعمل بجد لإطلاق الإصدار الجديد من تطبيق Dev Depot - ديبووت. ابقَ على اطلاع!</p>
+            
+            <div class="flex justify-center space-x-4 space-x-reverse mb-12">
+                <div class="countdown-item">
+                    <div id="days" class="countdown-number">00</div>
+                    <div class="countdown-label">أيام</div>
+                </div>
+                <div class="countdown-item">
+                    <div id="hours" class="countdown-number">00</div>
+                    <div class="countdown-label">ساعات</div>
+                </div>
+                <div class="countdown-item">
+                    <div id="minutes" class="countdown-number">00</div>
+                    <div class="countdown-label">دقائق</div>
+                </div>
+                <div class="countdown-item">
+                    <div id="seconds" class="countdown-number">00</div>
+                    <div class="countdown-label">ثواني</div>
+                </div>
+            </div>
+            
+            <div class="max-w-2xl mx-auto bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20">
+                <h2 class="text-2xl font-bold mb-4">ماذا سيتضمن الإصدار الجديد؟</h2>
+                <ul class="text-right space-y-3 text-lg">
+                    <li class="flex items-center space-x-3 space-x-reverse">
+                        <i class="fas fa-check-circle text-green-300"></i>
+                        <span>واجهة مستخدم محسنة وسهلة الاستخدام</span>
+                    </li>
+                    <li class="flex items-center space-x-3 space-x-reverse">
+                        <i class="fas fa-check-circle text-green-300"></i>
+                        <span>نظام دفع آمن ومطور</span>
+                    </li>
+                    <li class="flex items-center space-x-3 space-x-reverse">
+                        <i class="fas fa-check-circle text-green-300"></i>
+                        <span>دعم للغة العربية بشكل كامل</span>
+                    </li>
+                    <li class="flex items-center space-x-3 space-x-reverse">
+                        <i class="fas fa-check-circle text-green-300"></i>
+                        <span>نظام تقييم وتقييمات أكثر دقة</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-4 space-x-reverse mb-6 md:mb-0">
+                    <div class="w-10 h-10 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-store text-xl"></i>
+                    </div>
+                    <span class="text-xl font-bold">Dev Depot - ديبووت</span>
+                </div>
+                <div class="flex space-x-6 space-x-reverse text-blue-300">
+                    <a href="index.html" class="hover:text-white transition-colors">الرئيسية</a>
+                    <a href="countdown.html" class="hover:text-white transition-colors">العد التنازلي</a>
+                    <a href="contact.html" class="hover:text-white transition-colors">تواصل معنا</a>
+                </div>
+            </div>
+            <div class="border-t border-blue-800 mt-8 pt-8 text-center">
+                <p class="text-blue-300 mb-4">متجر الخدمات البرمجية والرقمية الأول</p>
+                <p class="text-sm text-blue-400">© 2025-2026 Dev Depot - ديبووت. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // تاريخ الإطلاق المحدد (يمكن تغييره)
+        const launchDate = new Date('2025-12-31T23:59:59').getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = launchDate - now;
+            
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            
+            if (timeLeft < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('countdown').innerHTML = '<h2 class="text-3xl font-bold">تم إطلاق التطبيق!</h2>';
+            }
+        }
+        
+        // تحديث العد التنازلي كل ثانية
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

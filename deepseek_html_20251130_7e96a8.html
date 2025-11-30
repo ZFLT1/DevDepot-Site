@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Depot - ديبووت</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { 
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+        .gradient-bg { 
+            background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3);
+        }
+        .card-hover { 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+        }
+        .card-hover:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 25px 50px rgba(59, 130, 246, 0.2); 
+        }
+        .pulse-animation { 
+            animation: pulse 2s infinite; 
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .floating { 
+            animation: floating 3s ease-in-out infinite; 
+        }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        .sky-gradient { 
+            background: linear-gradient(135deg, #7cd4fd 0%, #bae6fd 100%);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .download-btn {
+            background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.5);
+        }
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+            color: white;
+            font-size: 30px;
+        }
+        .logo-container {
+            background: transparent !important;
+        }
+        .countdown-item {
+            background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 15px;
+            min-width: 80px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+        }
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .countdown-label {
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center p-1 shadow-md logo-container">
+                        <i class="fas fa-store text-2xl"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold">Dev Depot - ديبووت</h1>
+                </div>
+                <div class="hidden md:flex space-x-8 space-x-reverse">
+                    <a href="index.html" class="hover:text-blue-200 transition-colors font-semibold">الرئيسية</a>
+                    <a href="countdown.html" class="hover:text-blue-200 transition-colors font-semibold">العد التنازلي</a>
+                    <a href="contact.html" class="hover:text-blue-200 transition-colors font-semibold">تواصل معنا</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="index.html" class="block py-2 hover:text-blue-200 transition-colors">الرئيسية</a>
+                <a href="countdown.html" class="block py-2 hover:text-blue-200 transition-colors">العد التنازلي</a>
+                <a href="contact.html" class="block py-2 hover:text-blue-200 transition-colors">تواصل معنا</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-72 h-72 bg-white rounded-full"></div>
+            <div class="absolute bottom-10 right-10 w-96 h-96 bg-white rounded-full"></div>
+        </div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="floating">
+                <div class="w-28 h-28 rounded-full mx-auto mb-8 flex items-center justify-center shadow-2xl logo-container bg-white">
+                    <i class="fas fa-store text-5xl text-sky-600"></i>
+                </div>
+            </div>
+            <h1 class="text-5xl font-bold mb-6">مرحباً بك في Dev Depot - ديبووت</h1>
+            <p class="text-xl mb-10 max-w-2xl mx-auto leading-relaxed">المتجر الأول للخدمات البرمجية والرقمية. اشتري وبع خدماتك الرقمية بسهولة وأمان</p>
+            <div class="flex flex-col sm:flex-row gap-5 justify-center">
+                <a href="#download" class="download-btn text-white px-10 py-4 rounded-xl font-semibold text-lg flex items-center justify-center gap-3">
+                    <i class="fas fa-download"></i>
+                    تحميل التطبيق الآن
+                </a>
+                <button onclick="joinDiscord()" class="glass-effect px-10 py-4 rounded-xl font-semibold text-lg hover:bg-white hover:text-sky-600 transition-colors flex items-center justify-center gap-3">
+                    <i class="fab fa-discord"></i>
+                    انضم لسيرفر الديسكورد
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-16 relative pb-3 after:absolute after:bottom-0 after:right-1/2 after:translate-x-1/2 after:w-24 after:h-1 after:bg-sky-500">لماذا Dev Depot - ديبووت؟</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center card-hover bg-gradient-to-b from-blue-50 to-white p-8 rounded-2xl border border-blue-100 shadow-md">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">خدمات موثوقة</h3>
+                    <p class="text-gray-600 leading-relaxed">جميع الخدمات مراجعة ومضمونة الجودة من قبل فريق متخصص</p>
+                </div>
+                <div class="text-center card-hover bg-gradient-to-b from-blue-50 to-white p-8 rounded-2xl border border-blue-100 shadow-md">
+                    <div class="feature-icon">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">أسعار تنافسية</h3>
+                    <p class="text-gray-600 leading-relaxed">احصل على أفضل الخدمات بأسعار مناسبة ومعقولة للجميع</p>
+                </div>
+                <div class="text-center card-hover bg-gradient-to-b from-blue-50 to-white p-8 rounded-2xl border border-blue-100 shadow-md">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">تقييمات حقيقية</h3>
+                    <p class="text-gray-600 leading-relaxed">نظام تقييم شفاف يساعدك في اختيار أفضل مقدمي الخدمات</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Preview Section -->
+    <section class="py-20 sky-gradient relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-0 left-0 w-64 h-64 bg-white rounded-full"></div>
+            <div class="absolute bottom-0 right-0 w-80 h-80 bg-white rounded-full"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-8">استكشف التطبيق</h2>
+                <p class="text-xl text-gray-700 max-w-2xl mx-auto">تطبيق سهل الاستخدام يجمع بين البائعين والمشترين في مكان واحد</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="floating">
+                        <div class="relative w-80 h-80 mx-auto">
+                            <div class="absolute inset-0 bg-gradient-to-br from-sky-400 to-blue-600 rounded-3xl shadow-2xl flex items-center justify-center">
+                                <i class="fas fa-store text-white text-8xl"></i>
+                            </div>
+                            <div class="absolute -bottom-5 -left-5 w-32 h-32 bg-white/30 backdrop-blur-md rounded-2xl border border-white/20"></div>
+                            <div class="absolute -top-5 -right-5 w-24 h-24 bg-white/30 backdrop-blur-md rounded-2xl border border-white/20"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div class="glass-effect p-6 rounded-2xl shadow-lg">
+                        <div class="flex items-center space-x-4 space-x-reverse mb-4">
+                            <div class="w-14 h-14 bg-sky-100 rounded-xl flex items-center justify-center text-sky-600 text-xl">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-800">بيع خدماتك</h3>
+                                <p class="text-gray-600">اعرض مهاراتك واربح المال</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-effect p-6 rounded-2xl shadow-lg">
+                        <div class="flex items-center space-x-4 space-x-reverse mb-4">
+                            <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 text-xl">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-800">اشتري ما تحتاجه</h3>
+                                <p class="text-gray-600">ابحث عن الخدمة المناسبة لك</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-effect p-6 rounded-2xl shadow-lg">
+                        <div class="flex items-center space-x-4 space-x-reverse mb-4">
+                            <div class="w-14 h-14 bg-indigo-100 rounded-xl flex items-center justify-center text-indigo-600 text-xl">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-800">دفع آمن</h3>
+                                <p class="text-gray-600">نظام دفع محمي ومضمون</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-8">حمل التطبيق الآن</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">ابدأ رحلتك في عالم الخدمات الرقمية مع Dev Depot - ديبووت</p>
+            </div>
+            <div class="max-w-2xl mx-auto bg-gradient-to-br from-blue-50 to-sky-100 p-10 rounded-3xl shadow-lg border border-blue-200">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Dev Depot - ديبووت لنظام الأندرويد</h3>
+                        <p class="text-gray-600 mb-6">قم بتنزيل تطبيقنا الآن واستمتع بتجربة تسوق رقمية فريدة وسهلة</p>
+                        
+                        <!-- زر تحميل APK الحقيقي -->
+                        <a href="#" class="download-btn w-full text-white p-4 rounded-xl flex items-center justify-center space-x-3 space-x-reverse text-lg font-semibold">
+                            <i class="fas fa-download"></i>
+                            <span>تنزيل APK مباشرة (v1.0)</span>
+                        </a>
+                        
+                        <p class="text-gray-500 text-sm mt-4">حجم التطبيق: 15 ميجابايت - متوافق مع الأندرويد 8.0+</p>
+                    </div>
+                    <div class="flex-1">
+                        <div class="text-center">
+                            <p class="text-gray-600 mb-4">أو امسح الكود للتحميل المباشر</p>
+                            <div class="w-40 h-40 bg-white border-2 border-blue-300 rounded-xl mx-auto flex items-center justify-center shadow-md">
+                                <i class="fas fa-qrcode text-blue-400 text-5xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <p class="text-gray-600 mb-4">طريقة التثبيت:</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                        <div class="w-10 h-10 bg-sky-500 rounded-full flex items-center justify-center text-white mx-auto mb-2">1</div>
+                        <p class="text-gray-700">قم بتنزيل ملف APK أعلاه</p>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                        <div class="w-10 h-10 bg-sky-500 rounded-full flex items-center justify-center text-white mx-auto mb-2">2</div>
+                        <p class="text-gray-700">افتح الملف وقم بالتثبيت (قد تحتاج إلى تمكين تثبيت التطبيقات من مصادر غير معروفة)</p>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                        <div class="w-10 h-10 bg-sky-500 rounded-full flex items-center justify-center text-white mx-auto mb-2">3</div>
+                        <p class="text-gray-700">استمتع باستخدام تطبيق Dev Depot - ديبووت</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 gradient-bg text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-8">تواصل معنا</h2>
+            <p class="text-xl mb-12 max-w-2xl mx-auto">هل لديك أسئلة أو تحتاج مساعدة؟ فريق Dev Depot - ديبووت جاهز لمساعدتك</p>
+            <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+                <div class="card-hover glass-effect p-8 rounded-2xl">
+                    <div class="w-14 h-14 bg-white bg-opacity-20 rounded-full mx-auto mb-4 flex items-center justify-center text-xl">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2 text-lg">البريد الإلكتروني</h3>
+                    <p class="break-all">depotteam@hotmail.com</p>
+                </div>
+                <div class="card-hover glass-effect p-8 rounded-2xl">
+                    <div class="w-14 h-14 bg-white bg-opacity-20 rounded-full mx-auto mb-4 flex items-center justify-center text-xl">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2 text-lg">سيرفر الديسكورد</h3>
+                    <button onclick="joinDiscord()" class="text-blue-200 hover:text-white transition-colors underline">
+                        انضم إلى سيرفرنا
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-4 space-x-reverse mb-6 md:mb-0">
+                    <div class="w-10 h-10 rounded-lg flex items-center justify-center logo-container">
+                        <i class="fas fa-store text-xl"></i>
+                    </div>
+                    <span class="text-xl font-bold">Dev Depot - ديبووت</span>
+                </div>
+                <div class="flex space-x-6 space-x-reverse text-blue-300">
+                    <a href="index.html" class="hover:text-white transition-colors">الرئيسية</a>
+                    <a href="countdown.html" class="hover:text-white transition-colors">العد التنازلي</a>
+                    <a href="contact.html" class="hover:text-white transition-colors">تواصل معنا</a>
+                </div>
+            </div>
+            <div class="border-t border-blue-800 mt-8 pt-8 text-center">
+                <p class="text-blue-300 mb-4">متجر الخدمات البرمجية والرقمية الأول</p>
+                <p class="text-sm text-blue-400">© 2025-2026 Dev Depot - ديبووت. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function downloadApp() {
+            // هذه الدالة غير ضرورية الآن لأننا نستخدم رابط تحميل مباشر
+            // ولكن يمكن استخدامها لأغراض أخرى مثل التتبع
+            console.log("بدأ تحميل التطبيق");
+        }
+
+        function joinDiscord() {
+            window.open('https://discord.gg/PmRvMVPzRG', '_blank');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
