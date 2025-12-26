@@ -180,7 +180,8 @@ function validateEmail(email) {
 // Countdown Timer for countdown.html
 if (document.querySelector('.countdown-timer')) {
     function updateCountdown() {
-        const targetDate = new Date('2025-12-31T23:59:59').getTime();
+        const targetDate = new Date('2026-01-20T23:59:59').getTime();
+
         const now = new Date().getTime();
         const timeLeft = targetDate - now;
         
