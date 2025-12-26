@@ -4,147 +4,442 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تواصل معنا - Dev Depot - ديبووت</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-        body { 
-            font-family: 'Cairo', sans-serif;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        .contact-container {
+            max-width: 1000px;
+            margin: 100px auto 50px;
+            padding: 0 20px;
         }
-        .gradient-bg { 
-            background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
-            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3);
+        
+        .contact-header {
+            text-align: center;
+            margin-bottom: 50px;
         }
-        .card-hover { 
-            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+        
+        .contact-title {
+            font-size: 2.8rem;
+            color: var(--text-dark);
+            margin-bottom: 15px;
         }
-        .card-hover:hover { 
-            transform: translateY(-8px); 
-            box-shadow: 0 25px 50px rgba(59, 130, 246, 0.2); 
+        
+        .contact-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
         }
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .contact-info-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px var(--shadow-blue);
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        
+        .contact-info-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        /* استبدال نموذج الاتصال ببطاقات تفاعلية */
+        .contact-alternative {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px var(--shadow-blue);
+            border: 1px solid var(--border-color);
+            margin-bottom: 40px;
+        }
+        
+        .contact-alternative h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--text-dark);
+            font-size: 1.8rem;
+        }
+        
+        .best-ways-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .best-ways-section h3 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .ways-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .way-item {
+            background: rgba(14, 165, 233, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            border-right: 4px solid var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+        
+        .way-item:hover {
+            background: rgba(14, 165, 233, 0.2);
+            transform: translateX(-5px);
+        }
+        
+        .way-item h4 {
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .way-item p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+        
+        .faq-section {
+            margin-top: 40px;
+        }
+        
+        .faq-section h3 {
+            color: var(--primary-blue);
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        
+        .faq-item {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            border-color: var(--primary-blue);
+        }
+        
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        
+        .faq-answer {
+            margin-top: 15px;
+            color: var(--text-gray);
+            line-height: 1.6;
+            display: none;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .contact-tips {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(139, 92, 246, 0.1));
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            border-right: 5px solid var(--primary-blue);
+        }
+        
+        .contact-tips h4 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-tips ul {
+            padding-right: 20px;
+        }
+        
+        .contact-tips li {
+            margin-bottom: 10px;
+            color: var(--text-gray);
+        }
+        
+        .back-home {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-container {
+                margin: 80px auto 40px;
+            }
+            
+            .contact-title {
+                font-size: 2.2rem;
+            }
+            
+            .contact-alternative {
+                padding: 30px 20px;
+            }
+            
+            .ways-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
-<body class="min-h-screen">
+<body>
     <!-- Header -->
-    <header class="gradient-bg text-white shadow-lg sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-3">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4 space-x-reverse">
-                    <div class="w-12 h-12 rounded-lg flex items-center justify-center p-1 shadow-md">
-                        <i class="fas fa-store text-2xl"></i>
-                    </div>
-                    <h1 class="text-2xl font-bold">Dev Depot - ديبووت</h1>
+    <header class="main-header">
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo-section">
+                     <img src="IconPack/depotApp_icon.png" alt="Dev Depot Logo" class="logo-img">
+                    <div class="brand-name">ديبووت</div>
                 </div>
-                <div class="hidden md:flex space-x-8 space-x-reverse">
-                    <a href="index.html" class="hover:text-blue-200 transition-colors font-semibold">الرئيسية</a>
-                    <a href="countdown.html" class="hover:text-blue-200 transition-colors font-semibold">العد التنازلي</a>
-                    <a href="contact.html" class="hover:text-blue-200 transition-colors font-semibold">تواصل معنا</a>
-                </div>
-                <div class="md:hidden">
-                    <button id="menu-toggle" class="text-white focus:outline-none">
-                        <i class="fas fa-bars text-2xl"></i>
+                
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-link">الرئيسية</a>
+                    <a href="index.html#features" class="nav-link">المميزات</a>
+                    <a href="countdown.html" class="nav-link">العد التنازلي</a>
+                    <a href="index.html#download" class="nav-link">تحميل التطبيق</a>
+                    <a href="contact.html" class="nav-link">تواصل معنا</a>
+                  
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
                     </button>
-                </div>
+                </nav>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
-                <a href="index.html" class="block py-2 hover:text-blue-200 transition-colors">الرئيسية</a>
-                <a href="countdown.html" class="block py-2 hover:text-blue-200 transition-colors">العد التنازلي</a>
-                <a href="contact.html" class="block py-2 hover:text-blue-200 transition-colors">تواصل معنا</a>
-            </div>
-        </nav>
+        </div>
     </header>
 
-    <!-- Contact Section -->
-    <section class="py-20 gradient-bg text-white">
-        <div class="container mx-auto px-6 text-center">
-            <h1 class="text-5xl font-bold mb-8">تواصل معنا</h1>
-            <p class="text-xl mb-12 max-w-2xl mx-auto">هل لديك أسئلة أو تحتاج مساعدة؟ فريق Dev Depot - ديبووت جاهز لمساعدتك</p>
+    <div class="contact-container">
+        <div class="contact-header">
+            <h1 class="contact-title">تواصل معنا</h1>
+            <p class="contact-subtitle">لديك سؤال أو استفسار؟ فريق ديبووت جاهز للإجابة على جميع استفساراتك ومساعدتك في أي وقت</p>
         </div>
-    </section>
-
-    <!-- Contact Details -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                <div class="card-hover bg-gradient-to-b from-blue-50 to-white p-8 rounded-2xl border border-blue-100 shadow-md text-center">
-                    <div class="w-16 h-16 bg-sky-500 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <h3 class="font-semibold mb-2 text-lg">البريد الإلكتروني</h3>
-                    <p class="break-all text-gray-600">depotteam@hotmail.com</p>
+        
+        <div class="contact-grid">
+            <div class="contact-info-card">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
                 </div>
-                <div class="card-hover bg-gradient-to-b from-blue-50 to-white p-8 rounded-2xl border border-blue-100 shadow-md text-center">
-                    <div class="w-16 h-16 bg-sky-500 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl">
-                        <i class="fab fa-discord"></i>
-                    </div>
-                    <h3 class="font-semibold mb-2 text-lg">سيرفر الديسكورد</h3>
-                    <button onclick="joinDiscord()" class="text-sky-600 hover:text-sky-800 transition-colors underline">
-                        انضم إلى سيرفرنا
-                    </button>
+                <h3>البريد الإلكتروني</h3>
+                <p>depotteam@hotmail.com</p>
+                <p style="color: var(--text-gray); margin-top: 10px;">نرد خلال 24 ساعة</p>
+            </div>
+            
+            <div class="contact-info-card">
+                <div class="contact-icon">
+                    <i class="fab fa-discord"></i>
                 </div>
-                <div class="card-hover bg-gradient-to-b from-blue-50 to-white p-8 rounded-2xl border border-blue-100 shadow-md text-center">
-                    <div class="w-16 h-16 bg-sky-500 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl">
-                        <i class="fab fa-youtube"></i>
+                <h3>سيرفر الديسكورد</h3>
+                <p>انضم لمجتمعنا النشط</p>
+                <button onclick="joinDiscord()" style="background: var(--gradient-blue); color: white; border: none; padding: 10px 25px; border-radius: 8px; margin-top: 15px; cursor: pointer;">
+                    انضم الآن
+                </button>
+            </div>
+            
+            <div class="contact-info-card">
+                <div class="contact-icon">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <h3>قناة اليوتيوب</h3>
+                <p>شاهد آخر التحديثات</p>
+                <button onclick="openYouTube()" style="background: var(--gradient-blue); color: white; border: none; padding: 10px 25px; border-radius: 8px; margin-top: 15px; cursor: pointer;">
+                    زيارة القناة
+                </button>
+            </div>
+        </div>
+        
+        <!-- استبدال نموذج الاتصال -->
+        <div class="contact-alternative">
+            <h2>أفضل طرق التواصل معنا</h2>
+            
+            <div class="best-ways-section">
+                <h3>نحن هنا لمساعدتك</h3>
+                <p style="color: var(--text-gray); max-width: 800px; margin: 0 auto 30px;">تواصل مع فريق ديبووت عبر القنوات التالية للحصول على أسرع استجابة وأفضل خدمة</p>
+                
+                <div class="ways-grid">
+                    <div class="way-item">
+                        <h4><i class="fab fa-discord"></i> سيرفر الديسكورد</h4>
+                        <p>انضم لمجتمعنا النشط على الديسكورد حيث يمكنك التواصل المباشر مع فريق الدعم والمستخدمين الآخرين.</p>
                     </div>
-                    <h3 class="font-semibold mb-2 text-lg">قناة اليوتيوب</h3>
-                    <button onclick="openYouTube()" class="text-sky-600 hover:text-sky-800 transition-colors underline">
-                        تابعنا على اليوتيوب
-                    </button>
+                    
+                    <div class="way-item">
+                        <h4><i class="fas fa-envelope"></i> البريد الإلكتروني</h4>
+                        <p>أرسل استفساراتك على البريد الإلكتروني وسيقوم فريق الدعم بالرد عليك خلال 24 ساعة.</p>
+                    </div>
+                    
+                    <div class="way-item">
+                        <h4><i class="fab fa-youtube"></i> قناة اليوتيوب</h4>
+                        <p>تابع قناتنا على اليوتيوب لمشاهدة الشروحات والتحديثات والإعلانات الرسمية.</p>
+                    </div>
                 </div>
             </div>
             
-            <!-- FAQ Section -->
-            <div class="max-w-3xl mx-auto mt-16">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">الأسئلة الشائعة</h2>
-                <div class="space-y-4">
-                    <div class="bg-blue-50 p-6 rounded-2xl border border-blue-200">
-                        <h3 class="font-semibold text-lg text-gray-800 mb-2">كيف يمكنني بيع خدماتي على المنصة؟</h3>
-                        <p class="text-gray-600">يمكنك إنشاء حساب بائع، ثم إضافة خدماتك مع وصف مفصل وسعر مناسب. بعد الموافقة على الخدمة من قبل الإدارة، ستظهر في المتجر.</p>
+            <div class="faq-section">
+                <h3>الأسئلة الشائعة</h3>
+                
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>كيف يمكنني الانضمام لمجتمع ديبووت على الديسكورد؟</span>
+                        <i class="fas fa-chevron-down"></i>
                     </div>
-                    <div class="bg-blue-50 p-6 rounded-2xl border border-blue-200">
-                        <h3 class="font-semibold text-lg text-gray-800 mb-2">هل الدفع على المنصة آمن؟</h3>
-                        <p class="text-gray-600">نعم، نستخدم أنظمة دفع آمنة ومشفرة لحماية معلوماتك المالية. جميع المعاملات تتم عبر بوابات دفع موثوقة.</p>
-                    </div>
-                    <div class="bg-blue-50 p-6 rounded-2xl border border-blue-200">
-                        <h3 class="font-semibold text-lg text-gray-800 mb-2">ما هي أنواع الخدمات المتاحة؟</h3>
-                        <p class="text-gray-600">نقدم مجموعة واسعة من الخدمات الرقمية مثل تصميم المواقع، البرمجة، التسويق الإلكتروني، تصميم الجرافيك، كتابة المحتوى، وغيرها الكثير.</p>
+                    <div class="faq-answer">
+                        <p>اضغط على زر "انضم الآن" الموجود في قسم سيرفر الديسكورد وسيتم توجيهك إلى رابط الانضمام. يمكنك أيضا استخدام الرابط الموجود في تذييل الصفحة.</p>
                     </div>
                 </div>
+                
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>ما هو وقت استجابة فريق الدعم؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>فريق الدعم يجيب على الاستفسارات عبر البريد الإلكتروني خلال 24 ساعة، أما على سيرفر الديسكورد فغالباً ما تكون الاستجابة خلال ساعات قليلة.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>هل يمكنني اقتراح ميزات جديدة للتطبيق؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم! نرحب بجميع اقتراحاتكم عبر سيرفر الديسكورد في قناة الاقتراحات المخصصة، أو عبر البريد الإلكتروني.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>أين يمكنني مشاهدة شروحات استخدام التطبيق؟</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نقوم بنشر شروحات مفصلة على قناتنا في اليوتيوب، كما يمكنك الاستفسار عن أي شيء على سيرفر الديسكورد وسيقوم المجتمع بمساعدتك.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-tips">
+                <h4><i class="fas fa-lightbulb"></i> نصائح للتواصل الفعال</h4>
+                <ul>
+                    <li>للحصول على أسرع رد، استخدم سيرفر الديسكورد للاستفسارات العاجلة</li>
+                    <li>قدم تفاصيل كافية عن استفسارك لتسهيل عملية المساعدة</li>
+                    <li>تابع قناة اليوتيوب لمعرفة آخر التحديثات والميزات الجديدة</li>
+                    <li>انضم لمجتمع الديسكورد لتبادل الخبرات مع المستخدمين الآخرين</li>
+                </ul>
             </div>
         </div>
-    </section>
+        
+        <div class="back-home">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-right"></i>
+                العودة إلى الصفحة الرئيسية
+            </a>
+        </div>
+    </div>
 
     <!-- Footer -->
-    <footer class="bg-blue-900 text-white py-12">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="flex items-center space-x-4 space-x-reverse mb-6 md:mb-0">
-                    <div class="w-10 h-10 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-store text-xl"></i>
-                    </div>
-                    <span class="text-xl font-bold">Dev Depot - ديبووت</span>
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <img src="IconPack/Depot_ico.png" alt="Dev Depot Logo" class="footer-logo">
+                    <div class="footer-brand">Dev Depot - ديبووت</div>
+                    <p class="footer-description">
+                          المتجر الأول في العالم العربي، يجمع بين البائعين والمشترين في منصة آمنة وسهلة الاستخدام.
+                    </p>
                 </div>
-                <div class="flex space-x-6 space-x-reverse text-blue-300">
-                    <a href="index.html" class="hover:text-white transition-colors">الرئيسية</a>
-                    <a href="countdown.html" class="hover:text-white transition-colors">العد التنازلي</a>
-                    <a href="contact.html" class="hover:text-white transition-colors">تواصل معنا</a>
+                
+                <div class="footer-links">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="#features">مميزات التطبيق</a></li>
+                        <li><a href="countdown.html">العد التنازلي</a></li>
+                        <li><a href="#download">تحميل التطبيق</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                      
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h3>تابعنا على</h3>
+                    <div class="social-icons">
+                        <a href="https://discord.gg/PmRvMVPzRG" target="_blank" class="social-icon">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCBmdKdKm5_Q4ALRBCdBeqcw" target="_blank" class="social-icon">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="border-t border-blue-800 mt-8 pt-8 text-center">
-                <p class="text-blue-300 mb-4">متجر الخدمات البرمجية والرقمية الأول</p>
-                <p class="text-sm text-blue-400">© 2025-2026 Dev Depot - ديبووت. جميع الحقوق محفوظة.</p>
+            
+            <div class="copyright">
+                <p>© 2025-2026 Dev Depot - ديبووت. جميع الحقوق محفوظة.</p>
+                <p style="margin-top: 10px;">تم التطوير والتحديث بمناسبة مرور سنة كاملة على تأسيس الفكرة</p>
             </div>
         </div>
     </footer>
 
+    <script src="script.js"></script>
+    
     <script>
+        // وظائف الروابط الموجودة أصلاً
         function joinDiscord() {
             window.open('https://discord.gg/PmRvMVPzRG', '_blank');
         }
@@ -153,10 +448,24 @@
             window.open('https://www.youtube.com/channel/UCBmdKdKm5_Q4ALRBCdBeqcw', '_blank');
         }
         
-        // Mobile menu toggle
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+        // وظيفة جديدة للأسئلة الشائعة
+        function toggleFAQ(faqItem) {
+            // إغلاق جميع العناصر الأخرى
+            const allFAQItems = document.querySelectorAll('.faq-item');
+            allFAQItems.forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // فتح/إغلاق العنصر المحدد
+            faqItem.classList.toggle('active');
+        }
+        
+        // رسالة تأكيد عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            // يمكن إضافة أي كود إضافي هنا
+            console.log('صفحة تواصل معنا - تم تحميل البديل التفاعلي بنجاح');
         });
     </script>
 </body>

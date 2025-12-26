@@ -4,58 +4,223 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تم توثيق حسابك - Dev Depot - ديبووت</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
     <style>
-        body { 
-            font-family: 'Cairo', sans-serif;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .verification-container {
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .verification-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 40px var(--shadow-blue);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        
+        .verification-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--gradient-blue);
+        }
+        
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--success-green) 0%, #34d399 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: white;
+            font-size: 3rem;
+            animation: scaleIn 0.5s ease;
+        }
+        
+        @keyframes scaleIn {
+            0% { transform: scale(0); }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .verification-title {
+            font-size: 2.2rem;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+        
+        .verification-message {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .verification-benefits {
+            background: var(--bg-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: right;
+            border: 1px solid var(--border-color);
+        }
+        
+        .verification-benefits h3 {
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .verification-benefits ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .verification-benefits li {
+            padding: 8px 0;
+            padding-right: 25px;
+            position: relative;
+            color: var(--text-gray);
+        }
+        
+        .verification-benefits li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+        
+        .action-buttons {
             display: flex;
             flex-direction: column;
+            gap: 15px;
         }
-        .gradient-bg { 
-            background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+        
+        .btn {
+            padding: 18px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--gradient-blue);
+            color: white;
+            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.25);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(14, 165, 233, 0.35);
+        }
+        
+        .btn-secondary {
+            background: var(--card-bg);
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--bg-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-note {
+            margin-top: 30px;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+        
+        .footer-note a {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+        
+        @media (max-width: 480px) {
+            .verification-card {
+                padding: 30px 20px;
+            }
+            
+            .verification-title {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
-<body class="min-h-screen">
-    <!-- Main Content -->
-    <main class="flex-grow flex items-center justify-center py-12">
-        <div class="container mx-auto px-6">
-            <div class="max-w-md mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
-                <div class="gradient-bg py-8 px-6 text-center text-white">
-                    <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-check-circle text-green-500 text-4xl"></i>
-                    </div>
-                    <h1 class="text-2xl font-bold">تم توثيق حسابك بنجاح!</h1>
-                </div>
-                <div class="p-8 text-center">
-                    <p class="text-gray-600 mb-6">تهانينا! لقد تم توثيق حسابك في Dev Depot - ديبووت بنجاح. يمكنك الآن الاستفادة من جميع ميزات التطبيق.</p>
-                    <div class="space-y-4">
-                      
-                        <a href="index.html" class="block w-full border border-sky-500 text-sky-500 hover:bg-sky-50 py-3 rounded-lg font-semibold transition-colors">
-                            زيارة الموقع
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+<body>
+    <div class="verification-container">
+        <div class="verification-card">
 
-    <!-- Footer -->
-    <footer class="bg-blue-900 text-white py-8">
-        <div class="container mx-auto px-6 text-center">
-            <div class="flex items-center justify-center space-x-4 space-x-reverse mb-4">
-                <div class="w-10 h-10 rounded-lg flex items-center justify-center">
-                    <i class="fas fa-store text-xl"></i>
-                </div>
-                <span class="text-xl font-bold">Dev Depot - ديبووت</span>
+            
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
             </div>
-            <p class="text-blue-300 mb-2">متجر الخدمات البرمجية والرقمية الأول</p>
-            <p class="text-sm text-blue-400">© 2025-2026 Dev Depot - ديبووت. جميع الحقوق محفوظة.</p>
+            
+            <h1 class="verification-title">تم توثيق حسابك بنجاح! 🎉</h1>
+            
+            <p class="verification-message">
+                مبروك! لقد تم تأكيد هويتك وتفعيل حسابك في ديبووت.
+                يمكنك الآن العودة للتطبيق الاستفادة من جميع المزايا والمميزات المتاحة.
+            </p>
+            
+         
+            
+           
+                
+                <a href="index.html" class="btn btn-secondary">
+                    <i class="fas fa-home"></i>
+                   استكشاف الموقع
+                </a>
+            </div>
+            
+            <p class="footer-note">
+                إذا واجهت أي مشكلة، لا تتردد في <a href="contact.html">الاتصال بنا</a>
+            </p>
         </div>
-    </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // إضافة تأثيرات إضافية
+        document.addEventListener('DOMContentLoaded', function() {
+            const card = document.querySelector('.verification-card');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
 </body>
 </html>
