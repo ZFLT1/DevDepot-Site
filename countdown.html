@@ -536,7 +536,7 @@
         <div class="countdown-section fade-in delay-1">
             <div class="launch-date">
                 <i class="fas fa-calendar-alt"></i>
-                تاريخ الإطلاق المتوقع: 31 ديسمبر 2025
+                تاريخ الإطلاق المتوقع: 10 يناير 2026
             </div>
             
             <div class="countdown-display">
@@ -564,7 +564,7 @@
             <div class="progress-section">
                 <div class="progress-header">
                     <span>مرحلة التطوير</span>
-                    <span>65% اكتمل</span>
+                    <span>70% اكتمل</span>
                 </div>
                 <div class="progress-bar">
                     <div class="progress-fill"></div>
@@ -639,6 +639,7 @@
                     </p>
                 </div>
                 
+
                 <div class="footer-links">
                     <h3>روابط سريعة</h3>
                     <ul>
@@ -664,7 +665,7 @@
                 </div>
             </div>
             
-            <div class="copyright">
+         <div class="copyright">
                 <p>© 2025-2026 Dev Depot - ديبووت. جميع الحقوق محفوظة.</p>
                 <p style="margin-top: 10px;">تم التطوير والتحديث بمناسبة مرور سنة كاملة على تأسيس الفكرة</p>
             </div>
@@ -676,7 +677,8 @@
     <script>
         // كود العد التنازلي
         function updateCountdown() {
-            const launchDate = new Date("December 31, 2025 23:59:59").getTime();
+            NchDate = new Date("January 20, 2026 00:00:00").getTime();
+
             const now = new Date().getTime();
             const timeLeft = launchDate - now;
             
@@ -714,8 +716,7 @@
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('animated');
-                    }
+                        entry.target.classList.add('ani                    }
                 });
             }, observerOptions);
             
